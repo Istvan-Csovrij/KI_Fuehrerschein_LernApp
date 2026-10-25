@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KI-Führerschein Campus | Interaktive Lernplattform</title>
+  
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Top Navigation Header -->
+    <header class="top-header">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="icon-btn sidebar-toggle-btn" id="sidebarToggleBtn" title="Inhaltsverzeichnis umschalten" aria-label="Menü">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <div class="brand-wrapper" onclick="app.loadLesson('les-1-1')">
+          <div class="brand-logo-badge">⚡</div>
+          <div class="brand-info">
+            <h1>KI-FÜHRERSCHEIN</h1>
+            <span>CAMPUS · PRAXISLEHRGANG</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Progress Indicator -->
+      <div class="header-center-stats">
+        <div class="progress-pill-container" title="Ihr gesamter Lernfortschritt">
+          <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;">Status:</span>
+          <div class="progress-pill-bar">
+            <div class="progress-pill-fill" id="headerProgressFill"></div>
+          </div>
+          <span class="progress-pill-text" id="headerProgressText">0% Fertig</span>
+        </div>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="header-actions">
+        <button class="icon-btn" id="soundToggleBtn" title="Soundeffekte umschalten" aria-label="Audio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <button class="icon-btn" id="themeToggleBtn" title="Farbschema wechseln" aria-label="Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Wrapper with Sidebar and Content -->
+    <div class="main-wrapper">
+      <aside class="app-sidebar" id="appSidebar">
+        <!-- Sidebar injected dynamically via app.js -->
+      </aside>
+
+      <main class="content-area" id="contentArea">
+        <!-- Active Lesson / Exam injected dynamically via app.js -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
