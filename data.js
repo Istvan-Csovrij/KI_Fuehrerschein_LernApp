@@ -1,13 +1,13 @@
 /**
  * KI-Führerschein Campus - Vollständige Wissensbasis und Kursdaten
- * Enthält alle Module, Lektionen, Interaktionselemente und Prüfungsfragen.
+ * Enthält alle Module, Kapitel, Lektionen, Interaktionselemente und Prüfungsfragen.
  */
 
 const COURSE_DATA = {
   meta: {
     title: "KI-Führerschein – Zertifizierter Praxislehrgang",
     subtitle: "Vom Einsteiger zum kompetenten KI-Anwender",
-    version: "2.0",
+    version: "2.1",
     totalModules: 3,
     passingScore: 70
   },
@@ -25,6 +25,7 @@ const COURSE_DATA = {
           id: "kap-1",
           number: "1",
           title: "1. Licht und Schatten der KI",
+          description: "Einführung in die Ambivalenz von Künstlicher Intelligenz: Gewaltige Produktivitätspotenziale vs. Verlust von Originalität und kognitive Selbstständigkeit.",
           lessons: [
             {
               id: "les-1-1",
@@ -87,18 +88,6 @@ const COURSE_DATA = {
                     }
                   ],
                   takeaway: "Fazit der Studie: KI ist ein unersetzlicher Beschleuniger, darf aber nicht das eigene kritische Denken ersetzen. Wer das Steuer komplett an die KI übergibt, verlernt das Fahren!"
-                },
-                {
-                  type: "quiz_inline",
-                  question: "Welche zentrale Erkenntnis lieferte die MIT-Studie (Kosmyna et al. 2025) bezüglich der neuronalen Aktivität bei Nutzung von LLMs?",
-                  options: [
-                    "Die Nutzung von ChatGPT stimulierte das Gehirn zu historisch nie dagewesenen Höchstwerten an kreativer Konnektivität.",
-                    "Bei der Nutzung generativer Sprachmodelle zeigte sich die schwächste neuronale Konnektivität im Vergleich zur Bearbeitung ohne KI.",
-                    "Suchmaschinen schnitten kognitiv deutlich schlechter ab als reine KI-Antworten.",
-                    "Es konnte überhaupt kein messbarer Unterschied im EEG nachgewiesen werden."
-                  ],
-                  correctIndex: 1,
-                  explanation: "Richtig! Die EEG-Messungen zeigten die geringste neuronale Aktivität bei Probanden, die Aufgaben vollständig von ChatGPT lösen ließen, da wesentliche kognitive Syntheseprozesse ausgelagert wurden."
                 }
               ]
             }
@@ -108,6 +97,7 @@ const COURSE_DATA = {
           id: "kap-2",
           number: "2",
           title: "2. Grundlagen der Künstlichen Intelligenz",
+          description: "Von Alan Turings Vision bis zu modernen neuronalen Netzen: Grundbegriffe sowie Stärken und Grenzen klassischer und generativer KI.",
           lessons: [
             {
               id: "les-2-1",
@@ -181,27 +171,22 @@ const COURSE_DATA = {
                       details: "KI-Systeme, die auf Basis von Prompts eigenständig neue, originär erscheinende Inhalte erzeugen – Texte, Bilder, Audio, Videos oder Computercode (Beispiele: GPT-4, Gemini, Claude, Midjourney, Stable Diffusion)."
                     }
                   ]
-                },
-                {
-                  type: "matching_game",
-                  title: "Interaktives Wissens-Puzzle: Grundbegriffe zuordnen",
-                  pairs: [
-                    { concept: "Deep Learning", match: "Neuronale Netze mit zahlreichen verborgenen Schichten für abstrakte Merkmale" },
-                    { concept: "Algorithmus", match: "Endliche, präzise definierte Schrittfolge zur systematischen Problemlösung" },
-                    { concept: "KI-Modell", match: "Mathematische Repräsentation optimierter Parameter aus der Trainingsphase" },
-                    { concept: "Generative KI", match: "Systeme, die eigenständig neue Artefakte wie Texte, Bilder oder Code erzeugen" }
-                  ]
                 }
               ]
             },
             {
-              id: "les-2-2",
-              number: "2.2",
-              title: "Stärken und Grenzen von KI-Systemen",
-              readTime: "9 Min.",
+              id: "les-2-2-1",
+              number: "2.2.1",
+              title: "KI im Allgemeinen – Stärken & Grenzen",
+              readTime: "7 Min.",
               type: "interactive-tabs",
-              summary: "Vergleichende Analyse der 5 Dimensionen klassischer KI und generativer Modelle: Wo liegen die Stärken und wo die fundamentalen Grenzen?",
+              summary: "Die 5 Dimensionen klassischer KI-Systeme: Effizienz, Mustererkennung, Schein-Objektivität, Skalierbarkeit und Verantwortung.",
               sections: [
+                {
+                  type: "hero",
+                  title: "Die 5 Dimensionen von KI im Allgemeinen",
+                  content: "Künstliche Intelligenz besitzt enorme Fähigkeiten zur automatisierten Informationsverarbeitung. Um Systeme jedoch realistisch einzuschätzen und nicht in blinde Technikgläubigkeit zu verfallen, müssen wir die 5 Kern-Dimensionen analysieren."
+                },
                 {
                   type: "tabbed_content",
                   tabs: [
@@ -241,10 +226,25 @@ const COURSE_DATA = {
                       cons: "Black-Box-Problem: Mangelnde Nachvollziehbarkeit komplexer Entscheidungen; eine KI kann rechtlich und moralisch keine Verantwortung übernehmen."
                     }
                   ]
+                }
+              ]
+            },
+            {
+              id: "les-2-2-2",
+              number: "2.2.2",
+              title: "Generative KI – Stärken & Grenzen",
+              readTime: "7 Min.",
+              type: "interactive-cards",
+              summary: "Kreative Synthese, Sprachgewandtheit vs. Halluzinationen, Personalisierung und Simulationen im Berufsalltag.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Was Generative KI besonders macht",
+                  content: "Während traditionelle KI-Modelle Daten klassifizieren oder filtern (z. B. Spam/Kein Spam), erzeugen generative Modelle völlig neue Inhalte. Dies eröffnet ungeahnte kreative Möglichkeiten, birgt jedoch spezifische Fallstricke."
                 },
                 {
                   type: "card_grid",
-                  title: "Stärken & Grenzen Generativer KI im Detail",
+                  title: "Stärken & Grenzen Generativer KI im Detail (Klicken zum Wenden)",
                   cards: [
                     {
                       title: "Kreative Synthese",
@@ -276,6 +276,7 @@ const COURSE_DATA = {
           id: "kap-3",
           number: "3",
           title: "3. Anwendungsbereiche großer Sprachmodelle & Bild-KIs",
+          description: "Praxiseinsatz von LLMs und Bild-/Video-KIs: Wie Sprache in Vektoren übersetzt wird, wie Bildbearbeitungsverfahren funktionieren und wie Videogenerierung mit Prompts gelingt.",
           lessons: [
             {
               id: "les-3-1",
@@ -488,14 +489,15 @@ const COURSE_DATA = {
           id: "kap-4",
           number: "4",
           title: "4. Risiken & Grenzen: Halluzinationen & Bias",
+          description: "Täuschungen erkennen und vermeiden: Ursachen von Halluzinationen, das Phänomen 'Workslop', die 8 Gegenmaßnahmen und algorithmischer Bias.",
           lessons: [
             {
-              id: "les-4-1",
-              number: "4.1",
-              title: "Halluzinationen verstehen und vermeiden",
-              readTime: "9 Min.",
-              type: "interactive-checklist",
-              summary: "Warum KI lügt, ohne es zu wollen: Die Ursachen im latenten Raum, das Phänomen 'Workslop' und die 8 erprobten Schutzstrategien.",
+              id: "les-4-1-1",
+              number: "4.1.1",
+              title: "Halluzinationen – Entstehung & Ursachen",
+              readTime: "7 Min.",
+              type: "interactive-concept",
+              summary: "Warum Sprachmodelle falsche Aussagen erfinden und als überzeugende Wahrheiten verkaufen. Das Phänomen 'Workslop' im Büro.",
               sections: [
                 {
                   type: "concept_explainer",
@@ -508,6 +510,21 @@ const COURSE_DATA = {
                   badge: "Berufs-Phänomen",
                   title: "Das Phänomen 'Workslop'",
                   text: "Als 'Workslop' bezeichnet man minderwertige, unvollständige oder fehlerhafte KI-Texte, die ungeprüft in Umlauf gebracht werden. Statt Zeit zu sparen, wälzt der Ersteller die Arbeit auf Kollegen oder Kunden ab, die den Text mühsam korrigieren müssen."
+                }
+              ]
+            },
+            {
+              id: "les-4-1-2",
+              number: "4.1.2",
+              title: "Halluzinationen – Die 8 Schutzstrategien",
+              readTime: "8 Min.",
+              type: "interactive-checklist",
+              summary: "Die 8 erprobten Praxisstrategien gegen Halluzinationen: Von Prompt-Schärfe bis zum Multi-Modell-Vergleich.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Wie schütze ich mich vor Halluzinationen?",
+                  content: "Niemand muss Halluzinationen hilflos ausgeliefert sein. Durch gezielte Prompting-Techniken, Faktenprüfung und methodisches Vorgehen lässt sich das Risiko drastisch minimieren."
                 },
                 {
                   type: "interactive_checklist",
@@ -526,8 +543,8 @@ const COURSE_DATA = {
               ]
             },
             {
-              id: "les-4-2",
-              number: "4.2",
+              id: "les-4-2-1",
+              number: "4.2.1",
               title: "Verzerrungen (Bias) & algorithmische Fairness",
               readTime: "8 Min.",
               type: "interactive-case-study",
@@ -581,6 +598,7 @@ const COURSE_DATA = {
           id: "kap-5",
           number: "5",
           title: "5. Rechtliche Grundlagen: EU AI Act, Urheberrecht & DSGVO",
+          description: "Rechtssicherheit für die berufliche Praxis: Die 4 Risikostufen des EU AI Act, Schöpferprinzip und Gemeinfreiheit im Urheberrecht sowie Datenschutzbestimmungen.",
           lessons: [
             {
               id: "les-5-1",
@@ -753,6 +771,7 @@ const COURSE_DATA = {
           id: "kap-6",
           number: "6",
           title: "6. Kursabschluss & Offizielles Abschlussquiz",
+          description: "Abschlussprüfung mit 15 Fragen zum gesamten Stoffgebiet sowie Verleihung des digitalen Zertifikats.",
           lessons: [
             {
               id: "les-6-1",
@@ -782,28 +801,81 @@ const COURSE_DATA = {
       title: "Modul 2: Risikomanagement für KI-Systeme",
       description: "Einführung in Hochrisikosysteme, rechtliche Anforderungen gemäß EU AI Act, Risikomanagement in der Praxis (ISO/IEC 42001, ISO/IEC 23894) und Best Practices.",
       icon: "shield-alert",
-      badge: "Curriculum & Roadmap",
+      badge: "Inhalt verfügbar",
       chapters: [
         {
           id: "m2-kap-1",
           number: "1",
           title: "1. Hochrisiko-Systeme & Compliance",
+          description: "Detaillierte Analyse aller 8 Anwendungsbereiche für Hochrisikosysteme, ISO-Normen und IT-Sicherheit.",
           lessons: [
             {
-              id: "m2-les-1",
+              id: "m2-les-1-1",
               number: "1.1",
               title: "Klassifizierung nach EU AI Act Anhang III",
               readTime: "8 Min.",
-              type: "overview",
-              summary: "Detaillierte Analyse aller 8 Anwendungsbereiche für Hochrisikosysteme: Biometrie, kritische Infrastruktur, Bildung, Beschäftigung/HR, wesentliche Dienste, Strafverfolgung, Migration und Rechtspflege."
+              type: "theory-interactive",
+              summary: "Detaillierte Analyse aller 8 Anwendungsbereiche für Hochrisikosysteme: Biometrie, kritische Infrastruktur, Bildung, Beschäftigung/HR, wesentliche Dienste, Strafverfolgung, Migration und Rechtspflege.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Wann gilt ein KI-System als 'Hochrisiko'?",
+                  content: "Der EU AI Act stuft Systeme in Anhang III als Hochrisikosysteme ein, wenn sie bei Fehlfunktionen fundamentale Grundrechte, Gesundheit oder Sicherheit gefährden können. Hierfür gelten strenge Konformitätsbewertungsverfahren und lückenlose Dokumentationspflichten."
+                },
+                {
+                  type: "card_grid",
+                  title: "Die 8 Hochrisiko-Bereiche im Überblick",
+                  cards: [
+                    { title: "1. Biometrie & Überwachung", content: "Kategorisierung von Personen nach sensiblen Merkmalen oder nachträgliche Fernidentifizierung." },
+                    { title: "2. Kritische Infrastruktur", content: "Steuerung von Stromnetzen, Verkehrsleitsystemen, Wasser- oder Gasversorgung." },
+                    { title: "3. Bildung & Berufsausbildung", content: "Zulassung zu Universitäten oder KI-gestützte Bewertung von Prüfungsleistungen." },
+                    { title: "4. Beschäftigung & HR-Recruiting", content: "Automatisierte Bewerberauswahl, Beförderungsentscheidungen und Arbeitszeiterfassung." },
+                    { title: "5. Wesentliche öffentliche & private Dienste", content: "Kreditwürdigkeitsprüfung (Scoring), Notruf-Priorisierung, Risikobewertung von Versicherungen." },
+                    { title: "6. Strafverfolgung & Polizei", content: "Vorhersage von Straftaten (Predictive Policing) oder Glaubwürdigkeitsanalysen von Beweisen." },
+                    { title: "7. Migration & Grenzkontrolle", content: "Automatisierte Prüfung von Asylanträgen oder Echtheitsprüfung von Reisedokumenten." },
+                    { title: "8. Justiz & demokratische Prozesse", content: "KI-Unterstützung bei richterlichen Urteilen oder Beeinflussung von Wahlen." }
+                  ]
+                }
+              ]
             },
             {
-              id: "m2-les-2",
+              id: "m2-les-1-2",
               number: "1.2",
               title: "Managementsysteme: ISO/IEC 42001 & ISO 23894",
               readTime: "10 Min.",
-              type: "overview",
-              summary: "Der weltweit erste Standard für künstliche Intelligenz: Aufbau eines AI Management Systems (AIMS), Risikoanalyse nach ISO 23894 und Auditierung."
+              type: "theory-interactive",
+              summary: "Der weltweit erste Standard für künstliche Intelligenz: Aufbau eines AI Management Systems (AIMS), Risikoanalyse nach ISO 23894 und Auditierung.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Internationale Governance-Standards",
+                  content: "Während der EU AI Act das Gesetz vorgibt, liefern ISO/IEC-Standards die technischen und organisatorischen Werkzeuge zur Umsetzung. ISO/IEC 42001 ist der erste weltweit zertifizierbare Standard für KI-Managementsysteme (AIMS)."
+                },
+                {
+                  type: "accordion_group",
+                  title: "Die Schlüsselnormen im Detail",
+                  items: [
+                    {
+                      id: "iso-42001",
+                      term: "ISO/IEC 42001:2023 – KI-Managementsysteme (AIMS)",
+                      summary: "Der übergeordnete Rahmen für KI-Governance",
+                      details: "Definiert Anforderungen für die Einrichtung, Umsetzung, Aufrechterhaltung und fortlaufende Verbesserung eines Managementsystems für KI in Unternehmen. Umfasst Verantwortlichkeiten, Risikobewertung und kontinuierliche Audits."
+                    },
+                    {
+                      id: "iso-23894",
+                      term: "ISO/IEC 23894:2023 – Risikomanagement für KI",
+                      summary: "Praktischer Leitfaden zur Risikoidentifikation",
+                      details: "Gibt Organisationen Methoden an die Hand, um Risiken über den gesamten Lebenszyklus eines KI-Systems (Design, Training, Deployment, Betrieb) systematisch zu erfassen, zu bewerten und Gegenmaßnahmen zu ergreifen."
+                    },
+                    {
+                      id: "iso-27001",
+                      term: "ISO/IEC 27001 – Informationssicherheit",
+                      summary: "Schutz der Daten & IT-Infrastruktur",
+                      details: "Gewährleistet Vertraulichkeit, Integrität und Verfügbarkeit von Trainingsdaten, Modellgewichten und Inferenz-Pipelines gegen Cyberangriffe (z. B. Data Poisoning oder Prompt Injection)."
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -815,28 +887,91 @@ const COURSE_DATA = {
       title: "Modul 3: Grundlagen des Promptens",
       description: "Grundlagen des Prompt-Designs verstehen, KI-Tools produktiv und sicher einsetzen, fortgeschrittene Prompt-Techniken (Few-Shot, Chain-of-Thought) und Prompt-Bibliotheken.",
       icon: "terminal",
-      badge: "Curriculum & Roadmap",
+      badge: "Inhalt verfügbar",
       chapters: [
         {
           id: "m3-kap-1",
           number: "1",
           title: "1. Professionelles Prompt-Engineering",
+          description: "Systematische Prompt-Entwicklung mit dem CREATE-Framework, Few-Shot-Prompting und Chain-of-Thought.",
           lessons: [
             {
-              id: "m3-les-1",
+              id: "m3-les-1-1",
               number: "1.1",
               title: "Das CREATE-Framework für perfekte Prompts",
               readTime: "7 Min.",
-              type: "overview",
-              summary: "Context, Role, Explicit instructions, Adjustments, Target format und Examples – der systematische Weg zu erstklassigen Antworten."
+              type: "theory-interactive",
+              summary: "Context, Role, Explicit instructions, Adjustments, Target format und Examples – der systematische Weg zu erstklassigen Antworten.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Vom Zufallstreffer zur reproduzierbaren Qualität",
+                  content: "Professionelles Prompting ist kein Rätselraten, sondern methodische Kommunikation. Das CREATE-Framework strukturiert Prompts so, dass Sprachmodelle exakt den gewünschten Tonfall, Detaillierungsgrad und Formatvorgaben einhalten."
+                },
+                {
+                  type: "accordion_group",
+                  title: "Die 6 Bausteine des CREATE-Frameworks",
+                  items: [
+                    {
+                      id: "create-c",
+                      term: "C – Character / Role (Rolle & Persona)",
+                      summary: "Wer soll die KI sein?",
+                      details: "Beispiel: 'Agiere als erfahrener Senior-Projektmanager im Maschinenbau mit 15 Jahren Erfahrung in agiler Transformation.'"
+                    },
+                    {
+                      id: "create-r",
+                      term: "R – Request / Task (Klare Kernaufgabe)",
+                      summary: "Was genau soll getan werden?",
+                      details: "Beispiel: 'Erstelle eine 5-Punkte-Checkliste zur Risikobeurteilung eines neuen Software-Rollouts.'"
+                    },
+                    {
+                      id: "create-e",
+                      term: "E – Examples / Vorlagen (Few-Shot Prompting)",
+                      summary: "Wie sieht ein gutes Ergebnis aus?",
+                      details: "Gib 1–2 Beispiele für Eingabe und Wunschausgabe mit. Modelle orientieren sich extrem stark an gezeigten Musterschemata."
+                    },
+                    {
+                      id: "create-a",
+                      term: "A – Adjustments / Constraints (Einschränkungen)",
+                      summary: "Was darf die KI NICHT tun?",
+                      details: "Beispiel: 'Verwende keine Fachbegriffe ohne kurze Erklärung. Maximal 300 Wörter. Keine erfundenen Statistiken.'"
+                    },
+                    {
+                      id: "create-t",
+                      term: "T – Target Format (Zielstruktur)",
+                      summary: "In welcher Form soll die Ausgabe erfolgen?",
+                      details: "Beispiel: 'Gib das Ergebnis als strukturierte Markdown-Tabelle mit den Spalten Phase, Risiko, Maßnahme und Verantwortlicher aus.'"
+                    },
+                    {
+                      id: "create-e2",
+                      term: "E – Evaluation / Kritisches Nachhaken",
+                      summary: "Die Selbstüberprüfung der KI",
+                      details: "Beispiel: 'Überprüfe deine Antwort vor Ausgabe auf Vollständigkeit und nenne mir offene Fragen.'"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              id: "m3-les-2",
+              id: "m3-les-1-2",
               number: "1.2",
-              title: "Fortgeschrittene Techniken: CoT & Meta-Prompting",
+              title: "Fortgeschrittene Techniken: CoT & Persona",
               readTime: "9 Min.",
-              type: "overview",
-              summary: "Chain-of-Thought (Schritt-für-Schritt-Logik), Self-Consistency, Prompt-Chaining und iterative Prompt-Verfeinerung."
+              type: "theory-interactive",
+              summary: "Chain-of-Thought (Schritt-für-Schritt-Logik), Self-Consistency, Prompt-Chaining und iterative Prompt-Verfeinerung.",
+              sections: [
+                {
+                  type: "hero",
+                  title: "Komplexe Denkprozesse steuern",
+                  content: "Wenn Aufgaben logisches Schließen, mehrstufige Berechnungen oder Abwägungen erfordern, führt eine einfache direkte Frage oft zu Fehlern. Mit Chain-of-Thought (CoT) zwingen wir das Modell, Denkpfade explizit zu formulieren."
+                },
+                {
+                  type: "callout_golden_rule",
+                  title: "Der magische Prompt-Zusatz",
+                  rule: "„Denke Schritt für Schritt und begründe jeden Zwischenschritt ausführlich, bevor du das finale Ergebnis nennst.“",
+                  context: "Studien zeigen: Allein dieser Satz reduziert Fehler bei logischen Aufgaben um über 50%, da das Modell durch das Verschriften von Zwischengedanken zusätzliche Tokens im Kontext zur Selbstkorrektur nutzen kann!"
+                }
+              ]
             }
           ]
         }

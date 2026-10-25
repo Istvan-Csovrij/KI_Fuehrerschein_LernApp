@@ -1,11 +1,12 @@
 /**
  * KI-Führerschein Campus - Application Engine
- * Vollständige Interaktivität, Navigation, Simulationen, Quiz-Engine und Zertifikate.
+ * Vollständige Interaktivität, Navigation, Kapitel-Hubs, Simulationen, Quiz-Engine und Zertifikate.
  */
 
 class KICampusApp {
   constructor() {
     this.currentLessonId = "les-1-1";
+    this.currentChapterId = null;
     this.completedLessons = new Set(JSON.parse(localStorage.getItem("ki_completed_lessons") || "[]"));
     this.examAnswers = {};
     this.examScore = parseInt(localStorage.getItem("ki_exam_score") || "0", 10);
@@ -49,9 +50,9 @@ class KICampusApp {
       const now = this.audioCtx.currentTime;
       if (type === 'success') {
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, now); // C5
-        osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
-        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2); // G5
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1);
+        osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2);
         gain.gain.setValueAtTime(0.15, now);
         gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
         osc.start(now);
@@ -127,8 +128,21 @@ class KICampusApp {
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
   }
 
+  getAllLessons() {
+    const list = [];
+    COURSE_DATA.modules.forEach(m => {
+      m.chapters.forEach(c => {
+        c.lessons.forEach(l => {
+          list.push({ lesson: l, chapter: c, module: m });
+        });
+      });
+    });
+    return list;
+  }
+
   updateProgress() {
-    const totalLessons = 16; // Modul 1 hat 16 Schritte/Lektionen
+    const all = this.getAllLessons();
+    const totalLessons = all.length;
     const completedCount = this.completedLessons.size;
     const pct = Math.min(100, Math.round((completedCount / totalLessons) * 100));
 
@@ -147,7 +161,7 @@ class KICampusApp {
               <div class="module-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
-              <h3>Modul ${mod.number}</h3>
+              <h3>Modul ${mod.number}: ${mod.title.split(':')[1] || mod.title}</h3>
             </div>
             <span class="module-badge">${mod.badge}</span>
           </div>
@@ -155,10 +169,25 @@ class KICampusApp {
       `;
 
       mod.chapters.forEach(chap => {
-        html += `<div class="chapter-title">${chap.title}</div>`;
+        const isChapActive = this.currentChapterId === chap.id;
+        html += `
+          <li class="chapter-wrapper">
+            <button class="chapter-nav-btn ${isChapActive ? 'active' : ''}" 
+                    id="chap-btn-${chap.id}" 
+                    onclick="app.loadChapterOverview('${chap.id}')"
+                    title="Kapitelübersicht öffnen">
+              <span class="chapter-nav-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                ${chap.title}
+              </span>
+              <span class="chapter-count-badge">${chap.lessons.length} Lekt.</span>
+            </button>
+            <ul class="chapter-sublessons-list">
+        `;
+
         chap.lessons.forEach(les => {
           const isDone = this.completedLessons.has(les.id);
-          const isActive = this.currentLessonId === les.id;
+          const isActive = this.currentLessonId === les.id && !this.currentChapterId;
           html += `
             <li>
               <button class="lesson-nav-btn ${isActive ? 'active' : ''} ${isDone ? 'completed' : ''}" 
@@ -170,6 +199,8 @@ class KICampusApp {
             </li>
           `;
         });
+
+        html += `</ul></li>`;
       });
 
       html += `</ul></li>`;
@@ -186,6 +217,15 @@ class KICampusApp {
     }
   }
 
+  findChapter(chapId) {
+    for (const mod of COURSE_DATA.modules) {
+      for (const chap of mod.chapters) {
+        if (chap.id === chapId) return { chapter: chap, module: mod };
+      }
+    }
+    return null;
+  }
+
   findLesson(lessonId) {
     for (const mod of COURSE_DATA.modules) {
       for (const chap of mod.chapters) {
@@ -197,12 +237,86 @@ class KICampusApp {
     return null;
   }
 
+  loadChapterOverview(chapId) {
+    this.playSound("click");
+    this.currentChapterId = chapId;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Highlight chapter in sidebar
+    document.querySelectorAll(".chapter-nav-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".lesson-nav-btn").forEach(b => b.classList.remove("active"));
+    const chapBtn = document.getElementById(`chap-btn-${chapId}`);
+    if (chapBtn) chapBtn.classList.add("active");
+
+    const found = this.findChapter(chapId);
+    if (!found) return;
+
+    const { chapter, module } = found;
+
+    // Render Chapter Hub
+    let lessonsListHtml = chapter.lessons.map(les => {
+      const isDone = this.completedLessons.has(les.id);
+      return `
+        <div class="chapter-hub-card" onclick="app.loadLesson('${les.id}')">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="badge-tag">Lektion ${les.number}</span>
+            <span class="lesson-status-pill ${isDone ? 'done' : 'open'}">
+              ${isDone ? '✓ Abgeschlossen' : 'Offen'}
+            </span>
+          </div>
+          <h4 style="font-size: 1.15rem; color: var(--text-main); font-weight: 700; margin-bottom: 6px;">${les.title}</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">${les.summary}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-dim);">
+            <span>Lesezeit: ${les.readTime}</span>
+            <span style="color: var(--accent-cyan); font-weight: 600;">Jetzt starten →</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const firstLessonId = chapter.lessons[0] ? chapter.lessons[0].id : null;
+
+    let html = `
+      <div class="lesson-hero">
+        <div class="lesson-meta-bar">
+          <span class="badge-tag">Kapitel-Übersicht</span>
+          <span class="read-time">${chapter.lessons.length} Lektionen</span>
+        </div>
+        <h2>${chapter.title}</h2>
+        <p class="lead">${chapter.description || 'In diesem Kapitel erlernen Sie fundamentale Kernkompetenzen und praktische Fertigkeiten.'}</p>
+      </div>
+
+      <div class="content-block">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main);">Lektionen in diesem Kapitel</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Wählen Sie eine Lektion aus oder starten Sie der Reihe nach:</p>
+          </div>
+          ${firstLessonId ? `
+            <button class="btn btn-primary" onclick="app.loadLesson('${firstLessonId}')">
+              Kapitel starten
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          ` : ''}
+        </div>
+
+        <div class="chapter-hub-grid">
+          ${lessonsListHtml}
+        </div>
+      </div>
+    `;
+
+    this.contentArea.innerHTML = html;
+  }
+
   loadLesson(lessonId) {
     this.playSound("click");
     this.currentLessonId = lessonId;
+    this.currentChapterId = null;
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     // Update active nav button
+    document.querySelectorAll(".chapter-nav-btn").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".lesson-nav-btn").forEach(btn => btn.classList.remove("active"));
     const activeBtn = document.getElementById(`nav-btn-${lessonId}`);
     if (activeBtn) activeBtn.classList.add("active");
@@ -621,6 +735,53 @@ class KICampusApp {
       `;
     }
 
+    if (sec.type === "concept_explainer") {
+      return `
+        <div class="content-block">
+          <h3 class="block-title">${sec.title}</h3>
+          <div style="padding: 20px; border-radius: var(--radius-md); background: rgba(244, 63, 94, 0.08); border-left: 4px solid var(--accent-rose); margin-bottom: 16px;">
+            <p style="font-size: 1rem; color: var(--text-main); font-weight: 600; line-height: 1.7;">${sec.definition}</p>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;"><strong>Ursache:</strong> ${sec.cause}</p>
+        </div>
+      `;
+    }
+
+    if (sec.type === "callout_workslop") {
+      return `
+        <div class="content-block" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
+          <span class="badge-tag" style="background: var(--accent-amber); color: #000; margin-bottom: 10px;">${sec.badge}</span>
+          <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">${sec.title}</h4>
+          <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">${sec.text}</p>
+        </div>
+      `;
+    }
+
+    if (sec.type === "bias_categories") {
+      let items = sec.items.map(it => `
+        <div style="padding: 18px; border-radius: var(--radius-md); background: var(--bg-secondary); border: 1px solid var(--border-color); margin-bottom: 12px;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 6px;">${it.name}</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">${it.desc}</p>
+        </div>
+      `).join('');
+
+      return `
+        <div class="content-block">
+          <h3 class="block-title">${sec.title}</h3>
+          <div>${items}</div>
+        </div>
+      `;
+    }
+
+    if (sec.type === "legal_framework") {
+      return `
+        <div class="content-block" style="border-left: 4px solid var(--accent-cyan);">
+          <h3 class="block-title">${sec.title}</h3>
+          <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-main);">${sec.content}</p>
+        </div>
+      `;
+    }
+
     if (sec.type === "interactive_checklist") {
       let items = sec.strategies.map(st => `
         <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; border-radius: var(--radius-sm); background: var(--bg-secondary); border: 1px solid var(--border-color); margin-bottom: 10px;">
@@ -723,7 +884,6 @@ class KICampusApp {
       return;
     }
 
-    // Heuristische Tokenisierung nach Silben / Wörtern / Interpunktion
     const tokens = text.match(/[A-Za-zÄÖÜäöüß]+|[0-9]+|[^\s\w]/g) || [text];
     const colors = ["#3b82f6", "#06b6d4", "#8b5cf6", "#ec4899", "#10b981", "#f59e0b"];
 
@@ -791,19 +951,12 @@ class KICampusApp {
   }
 
   navigateRelative(delta) {
-    // Collect all lesson ids in sequence
-    const allIds = [];
-    COURSE_DATA.modules.forEach(m => {
-      m.chapters.forEach(c => {
-        c.lessons.forEach(l => allIds.push(l.id));
-      });
-    });
-
-    const idx = allIds.indexOf(this.currentLessonId);
+    const all = this.getAllLessons();
+    const idx = all.findIndex(item => item.lesson.id === this.currentLessonId);
     if (idx !== -1) {
       const nextIdx = idx + delta;
-      if (nextIdx >= 0 && nextIdx < allIds.length) {
-        this.loadLesson(allIds[nextIdx]);
+      if (nextIdx >= 0 && nextIdx < all.length) {
+        this.loadLesson(all[nextIdx].lesson.id);
       }
     }
   }
@@ -813,8 +966,8 @@ class KICampusApp {
   // ==========================================
   renderExamView() {
     this.currentExamIndex = 0;
-    this.examSelected = {}; // questionId -> Set of selected optionIds
-    this.examEvaluated = {}; // questionId -> boolean
+    this.examSelected = {};
+    this.examEvaluated = {};
     this.examScoreCount = 0;
     this.showExamQuestion(0);
   }
@@ -904,7 +1057,7 @@ class KICampusApp {
   }
 
   toggleExamOption(qId, optId) {
-    if (this.examEvaluated[qId]) return; // locked after evaluation
+    if (this.examEvaluated[qId]) return;
     this.playSound("click");
     const set = this.examSelected[qId];
     if (set.has(optId)) set.delete(optId);
@@ -929,7 +1082,6 @@ class KICampusApp {
 
     this.examEvaluated[qId] = true;
 
-    // Check if user matches exact set of correct options
     const correctOptions = q.options.filter(o => o.correct).map(o => o.id);
     const userSelected = Array.from(selectedSet);
 
@@ -943,7 +1095,6 @@ class KICampusApp {
       this.playSound("error");
     }
 
-    // Refresh view to show colors and feedback
     this.showExamQuestion(this.currentExamIndex);
   }
 
@@ -972,7 +1123,6 @@ class KICampusApp {
 
     const passed = pct >= COURSE_DATA.meta.passingScore;
 
-    // Mark exam complete
     this.completedLessons.add("les-6-1");
     localStorage.setItem("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
     this.updateProgress();
@@ -1133,7 +1283,6 @@ class KICampusApp {
 let app = null;
 document.addEventListener("DOMContentLoaded", () => {
   app = new KICampusApp();
-  // Live Tokenizer initializer
   setTimeout(() => {
     if (app) app.runTokenizerSim();
   }, 200);
