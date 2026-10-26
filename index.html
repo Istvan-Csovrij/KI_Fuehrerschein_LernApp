@@ -11,8 +11,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.2">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <script>
+    // Global error handler: Displays visual message if any script fails
+    window.addEventListener('error', function(e) {
+      console.error("Global JS error caught:", e);
+      var b = document.getElementById('global-error-banner');
+      if (!b) {
+        b = document.createElement('div');
+        b.id = 'global-error-banner';
+        b.style = 'position:fixed;top:80px;left:20px;right:20px;background:#ef4444;color:#fff;padding:16px 20px;border-radius:8px;z-index:99999;font-family:sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.5);line-height:1.5;';
+        document.body.appendChild(b);
+      }
+      b.innerHTML = '<strong>JavaScript-Ladefehler:</strong> ' + e.message + 
+                    '<br><span style="font-size:0.85rem;opacity:0.9;">Datei: ' + (e.filename || '').split('/').pop() + ' (Zeile ' + e.lineno + ')</span>' +
+                    '<br><button onclick="location.reload(true)" style="margin-top:10px;padding:6px 14px;background:#fff;color:#ef4444;border:none;border-radius:4px;font-weight:bold;cursor:pointer;">Cache leeren &amp; Neu laden</button>';
+    });
+  </script>
 </head>
 <body>
 
@@ -67,8 +84,8 @@
     </div>
   </div>
 
-  <!-- Application Scripts -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <!-- Application Scripts with Cache Buster -->
+  <script src="data.js?v=2.2"></script>
+  <script src="app.js?v=2.2"></script>
 </body>
 </html>

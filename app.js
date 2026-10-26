@@ -4,15 +4,41 @@
  */
 
 class KICampusApp {
+  static getStorage(key, fallback = "") {
+    try {
+      const val = localStorage.getItem(key);
+      return val !== null ? val : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  static setStorage(key, val) {
+    try {
+      localStorage.setItem(key, val);
+    } catch (e) {
+      console.warn("Storage write failed", e);
+    }
+  }
+
+  static getStorageJson(key, fallback = []) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
   constructor() {
     this.currentLessonId = "les-1-1";
     this.currentChapterId = null;
-    this.completedLessons = new Set(JSON.parse(localStorage.getItem("ki_completed_lessons") || "[]"));
+    this.completedLessons = new Set(KICampusApp.getStorageJson("ki_completed_lessons", []));
     this.examAnswers = {};
-    this.examScore = parseInt(localStorage.getItem("ki_exam_score") || "0", 10);
-    this.userName = localStorage.getItem("ki_user_name") || "Istvan Csovrij";
-    this.soundEnabled = localStorage.getItem("ki_sound_enabled") !== "false";
-    this.theme = localStorage.getItem("ki_theme") || "dark";
+    this.examScore = parseInt(KICampusApp.getStorage("ki_exam_score", "0"), 10);
+    this.userName = KICampusApp.getStorage("ki_user_name", "Istvan Csovrij");
+    this.soundEnabled = KICampusApp.getStorage("ki_sound_enabled", "true") !== "false";
+    this.theme = KICampusApp.getStorage("ki_theme", "dark");
 
     this.audioCtx = null;
     this.initAudio();
@@ -97,7 +123,7 @@ class KICampusApp {
 
     this.soundToggleBtn.addEventListener("click", () => {
       this.soundEnabled = !this.soundEnabled;
-      localStorage.setItem("ki_sound_enabled", this.soundEnabled);
+      KICampusApp.setStorage("ki_sound_enabled", this.soundEnabled);
       this.updateSoundBtn();
       this.playSound("click");
     });
@@ -116,7 +142,7 @@ class KICampusApp {
 
   applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("ki_theme", theme);
+    KICampusApp.setStorage("ki_theme", theme);
     this.themeToggleBtn.innerHTML = theme === "dark"
       ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
@@ -1028,7 +1054,7 @@ class KICampusApp {
   markLessonCompleteAndNext(lessonId) {
     this.playSound("success");
     this.completedLessons.add(lessonId);
-    localStorage.setItem("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
+    KICampusApp.setStorage("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
     this.updateProgress();
     this.renderSidebar();
     this.navigateRelative(1);
@@ -1203,12 +1229,12 @@ class KICampusApp {
     const total = COURSE_DATA.examQuestions.length;
     const pct = Math.round((this.examScoreCount / total) * 100);
     this.examScore = pct;
-    localStorage.setItem("ki_exam_score", pct);
+    KICampusApp.setStorage("ki_exam_score", pct);
 
     const passed = pct >= COURSE_DATA.meta.passingScore;
 
     this.completedLessons.add("les-6-1");
-    localStorage.setItem("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
+    KICampusApp.setStorage("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
     this.updateProgress();
     this.renderSidebar();
 
@@ -1262,7 +1288,7 @@ class KICampusApp {
   // ==========================================
   renderCertificateView() {
     this.completedLessons.add("les-6-2");
-    localStorage.setItem("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
+    KICampusApp.setStorage("ki_completed_lessons", JSON.stringify([...this.completedLessons]));
     this.updateProgress();
     this.renderSidebar();
 
@@ -1357,17 +1383,44 @@ class KICampusApp {
 
   updateCertName(name) {
     this.userName = name;
-    localStorage.setItem("ki_user_name", name);
+    KICampusApp.setStorage("ki_user_name", name);
     const el = document.getElementById("certDisplayName");
     if (el) el.textContent = name;
   }
 }
 
-// Global instance initialization on load
-let app = null;
-document.addEventListener("DOMContentLoaded", () => {
-  app = new KICampusApp();
-  setTimeout(() => {
-    if (app) app.runTokenizerSim();
-  }, 200);
-});
+// Global instance initialization on load with robust failover
+window.app = null;
+
+function startKICampusApp() {
+  if (window.app) return;
+  try {
+    if (typeof COURSE_DATA === 'undefined') {
+      console.error("COURSE_DATA is undefined!");
+      const errBox = document.createElement("div");
+      errBox.id = "startup-error-box";
+      errBox.style = "position:fixed;top:80px;left:20px;right:20px;background:#ef4444;color:#fff;padding:20px;border-radius:8px;z-index:99999;font-family:sans-serif;box-shadow:0 10px 25px rgba(0,0,0,0.5);";
+      errBox.innerHTML = "<strong>Fehler:</strong> Die Kursdaten (data.js) konnten nicht geladen werden.<br><small>Bitte drücken Sie Strg + F5, um die Seite neu zu laden.</small>";
+      document.body.appendChild(errBox);
+      return;
+    }
+    window.app = new KICampusApp();
+    setTimeout(() => {
+      if (window.app) window.app.runTokenizerSim();
+    }, 200);
+  } catch (err) {
+    console.error("App startup error:", err);
+    const errBox = document.createElement("div");
+    errBox.id = "startup-error-box";
+    errBox.style = "position:fixed;top:80px;left:20px;right:20px;background:#ef4444;color:#fff;padding:20px;border-radius:8px;z-index:99999;font-family:sans-serif;box-shadow:0 10px 25px rgba(0,0,0,0.5);";
+    errBox.innerHTML = "<strong>Fehler beim Starten der App:</strong> " + err.message + "<br><pre style='font-size:11px;overflow:auto;margin-top:8px;'>" + (err.stack || '') + "</pre>";
+    document.body.appendChild(errBox);
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startKICampusApp);
+} else {
+  startKICampusApp();
+}
+window.addEventListener("load", startKICampusApp);
