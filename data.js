@@ -88,8 +88,7 @@ const COURSE_DATA = {
                     }
                   ],
                   takeaway: "Fazit der Studie: KI ist ein unersetzlicher Beschleuniger, darf aber nicht das eigene kritische Denken ersetzen. Wer das Steuer komplett an die KI übergibt, verlernt das Fahren!"
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-1-1",
@@ -127,8 +126,6 @@ const COURSE_DATA = {
                   content: "Bereits in den 1950er Jahren stellte der britische Mathematiker Alan Turing die fundamentale Frage: 'Können Maschinen denken?'. 'Künstlich' bezeichnet von Menschenhand geschaffene, nicht-biologische Systeme. 'Intelligenz' meint im informatischen Sinne die Fähigkeit, Informationen wahrzunehmen, Muster zu erkennen, Wissen zu repräsentieren und zielorientierte Entscheidungen zu treffen."
                 },
                 {
-                  type: "accordion_group",
-                  {
                   type: "svg_diagram",
                   title: "Schaubild: Das Schichtenmodell der Künstlichen Intelligenz",
                   caption: "Von der Informatik über Machine Learning und Deep Learning bis hin zur modernen generativen KI.",
@@ -142,11 +139,11 @@ const COURSE_DATA = {
                     </defs>
                     <rect x="20" y="15" width="660" height="310" rx="16" fill="url(#sg1)" stroke="#38bdf8" stroke-width="2"/>
                     <text x="40" y="48" fill="#38bdf8" font-family="sans-serif" font-size="15" font-weight="bold">1. KÜNSTLICHE INTELLIGENZ (KI)</text>
-                    <text x="40" y="68" fill="#94a3b8" font-family="sans-serif" font-size="11.5">Oberbegriff für Systeme, die menschliche Problemlösungskompetenz & Wahrnehmung nachbilden</text>
+                    <text x="40" y="68" fill="#94a3b8" font-family="sans-serif" font-size="11.5">Oberbegriff für Systeme, die menschliche Problemlösungskompetenz &amp; Wahrnehmung nachbilden</text>
                     
                     <rect x="50" y="80" width="600" height="230" rx="14" fill="url(#sg2)" stroke="#0ea5e9" stroke-width="1.5"/>
                     <text x="70" y="110" fill="#38bdf8" font-family="sans-serif" font-size="14.5" font-weight="bold">2. MACHINE LEARNING (ML)</text>
-                    <text x="70" y="128" fill="#cbd5e1" font-family="sans-serif" font-size="11">Lernen statistischer Regeln & Muster direkt aus Datenbeispielen statt starrer Programmierung</text>
+                    <text x="70" y="128" fill="#cbd5e1" font-family="sans-serif" font-size="11">Lernen statistischer Regeln &amp; Muster direkt aus Datenbeispielen statt starrer Programmierung</text>
                     
                     <rect x="80" y="140" width="540" height="155" rx="12" fill="url(#sg3)" stroke="#60a5fa" stroke-width="1.5"/>
                     <text x="100" y="165" fill="#93c5fd" font-family="sans-serif" font-size="14" font-weight="bold">3. KÜNSTLICHE NEURONALE NETZE (KNN)</text>
@@ -160,7 +157,9 @@ const COURSE_DATA = {
                     <text x="350" y="263" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">⚡ 5. GENERATIVE KI (ChatGPT, Gemini, Claude, Midjourney, Veo)</text>
                   </svg>`
                 },
-                title: "Die 9 Kernbegriffe der modernen KI (Interaktiv erkunden)",
+                {
+                  type: "accordion_group",
+                  title: "Die 9 Kernbegriffe der modernen KI (Interaktiv erkunden)",
                   items: [
                     {
                       id: "acc-1",
@@ -217,8 +216,7 @@ const COURSE_DATA = {
                       details: "KI-Systeme, die auf Basis von Prompts eigenständig neue, originär erscheinende Inhalte erzeugen – Texte, Bilder, Audio, Videos oder Computercode (Beispiele: GPT-4, Gemini, Claude, Midjourney, Stable Diffusion)."
                     }
                   ]
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-2-1",
@@ -416,8 +414,6 @@ const COURSE_DATA = {
                   content: "Große Sprachmodelle (Large Language Models, LLMs) 'verstehen' Sprache nicht wie ein menschliches Bewusstsein. Sie verarbeiten Texte als numerische Vektoren und berechnen durch komplexe neuronale Schichten die statistische Wahrscheinlichkeit für jedes folgende Wort."
                 },
                 {
-                  type: "stepper",
-                  {
                   type: "svg_diagram",
                   title: "Schaubild: Die Inferenz-Pipeline von Sprachmodellen (LLMs)",
                   caption: "Vom Text-Prompt über Tokenisierung und semantischen Vektorraum zur probabilistischen Wort-Vorhersage.",
@@ -439,7 +435,7 @@ const COURSE_DATA = {
                     <circle cx="242" cy="52" r="16" fill="rgba(59, 130, 246, 0.2)"/>
                     <text x="242" y="57" fill="#60a5fa" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">2</text>
                     <text x="242" y="90" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Tokenisierung</text>
-                    <text x="242" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Zerlegung & IDs</text>
+                    <text x="242" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Zerlegung &amp; IDs</text>
                     <text x="242" y="132" fill="#60a5fa" font-family="monospace" font-size="10" text-anchor="middle">[4821, 312, 14]</text>
                     
                     <path d="M315 92 L335 92" stroke="#38bdf8" stroke-width="2"/>
@@ -468,7 +464,9 @@ const COURSE_DATA = {
                     <text x="710" y="118" fill="#fff" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">"die" (89%)</text>
                   </svg>`
                 },
-                title: "Die 4 Phasen der Sprachverarbeitung (Schritt für Schritt)",
+                {
+                  type: "stepper",
+                  title: "Die 4 Phasen der Sprachverarbeitung (Schritt für Schritt)",
                   steps: [
                     {
                       step: 1,
@@ -497,8 +495,7 @@ const COURSE_DATA = {
                   title: "Interaktiver Token- & Wahrscheinlichkeits-Simulator",
                   promptExample: "Künstliche Intelligenz berechnet Wahrscheinlichkeiten",
                   explanation: "Teste live, wie Wörter in Tokens zerlegt werden und warum LLMs keine zuverlässigen Taschenrechner ohne Code-Interpreter sind!"
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-3-2-1",
@@ -571,8 +568,6 @@ const COURSE_DATA = {
                   content: "Moderne Diffusionsmodelle wie FLUX, Midjourney oder DALL-E lernen durch schrittweises Rausch-Entfernen (Denoising), aus Rauschen fotorealistische Bilder oder Grafiken zu synthetisieren. Sie verstehen Bildkomposition, Lichtstimmungen, Objektplatzierungen und Kameralinsen."
                 },
                 {
-                  type: "labelled_graphic_tabs",
-                  {
                   type: "svg_diagram",
                   title: "Schaubild: Die 4 Bildbearbeitungsverfahren der generativen Bild-KI",
                   caption: "Visuelle Übersicht der Funktionsweisen von Inpainting, Outpainting, Upscaling und Rescaling.",
@@ -601,7 +596,7 @@ const COURSE_DATA = {
                     <path d="M448 87 L468 87" stroke="#34d399" stroke-width="2"/>
                     <rect x="475" y="55" width="50" height="65" rx="3" fill="#047857" stroke="#34d399"/>
                     <text x="500" y="92" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">4K / 8K</text>
-                    <text x="452" y="168" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Auflösung & Details erhöhen</text>
+                    <text x="452" y="168" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Auflösung &amp; Details erhöhen</text>
                     
                     <!-- Rescaling -->
                     <rect x="550" y="15" width="160" height="185" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
@@ -613,7 +608,9 @@ const COURSE_DATA = {
                     <text x="630" y="172" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Seitenverhältnis anpassen</text>
                   </svg>`
                 },
-                title: "Die 4 zentralen Bildbearbeitungs-Verfahren",
+                {
+                  type: "labelled_graphic_tabs",
+                  title: "Die 4 zentralen Bildbearbeitungs-Verfahren",
                   tabs: [
                     {
                       name: "Inpainting",
@@ -646,8 +643,7 @@ const COURSE_DATA = {
                     originalPrompt: "Cozy modern apartment living room, sunlight streaming through floor-to-ceiling windows, dust motes dancing in the light, cinematic 4K camera pan...",
                     dialogSupport: "Neu: Moderne Videomodelle können nun lippensynchrone Dialoge, Charaktere und atmosphärische Umgebungsgeräusche direkt aus dem Textprompt erschaffen."
                   }
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-3-3",
@@ -690,8 +686,7 @@ const COURSE_DATA = {
                   badge: "Berufs-Phänomen",
                   title: "Das Phänomen 'Workslop'",
                   text: "Als 'Workslop' bezeichnet man minderwertige, unvollständige oder fehlerhafte KI-Texte, die ungeprüft in Umlauf gebracht werden. Statt Zeit zu sparen, wälzt der Ersteller die Arbeit auf Kollegen oder Kunden ab, die den Text mühsam korrigieren müssen."
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-4-1-1",
@@ -808,8 +803,6 @@ const COURSE_DATA = {
                   content: "Mit dem EU Artificial Intelligence Act (AI Act) hat die Europäische Union das weltweit erste ganzheitliche Gesetz zur Regulierung von KI verabschiedet. Es folgt einem risikobasierten Ansatz: Je höher das potenzielle Risiko für Grundrechte und Sicherheit, desto strenger die Vorgaben."
                 },
                 {
-                  type: "risk_pyramid",
-                  {
                   type: "svg_diagram",
                   title: "Schaubild: Die offizielle Risikopyramide des EU AI Act",
                   caption: "Von der Europäischen Union definierte 4 Risikostufen mit Beispielen und Rechtsgrundlagen.",
@@ -838,7 +831,9 @@ const COURSE_DATA = {
                     <text x="25" y="240" fill="#34d399" font-family="sans-serif" font-size="11" font-weight="600">Spamfilter, Videospiele, Übersetzer</text>
                   </svg>`
                 },
-                title: "Die Risikopyramide des EU AI Act (Interaktiv)",
+                {
+                  type: "risk_pyramid",
+                  title: "Die Risikopyramide des EU AI Act (Interaktiv)",
                   levels: [
                     {
                       level: "1. Unannehmbares Risiko (Art. 5)",
@@ -890,8 +885,7 @@ const COURSE_DATA = {
                       ]
                     }
                   ]
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-5-1",
@@ -946,8 +940,7 @@ const COURSE_DATA = {
                   type: "license_note",
                   title: "Kommerzielle Nutzung & Plattform-AGB",
                   content: "Achtung: Ob Sie KI-Inhalte gewerblich (kommerziell) nutzen dürfen, richtet sich nicht primär nach dem Urheberrecht, sondern nach den Allgemeinen Geschäftsbedingungen (AGB/ToS) der jeweiligen Plattform! Bei Diensten wie Midjourney oder OpenAI ist die kommerzielle Nutzung oft zahlenden Abonnenten vorbehalten."
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-5-2",
@@ -977,8 +970,6 @@ const COURSE_DATA = {
                   content: "Die DSGVO gilt uneingeschränkt auch für KI-Systeme. Wenn Sie im Beruf eine KI einsetzen, ist Ihr Arbeitgeber der Verantwortliche im Sinne der DSGVO. Das bedeutet: Rechtsgrundlagen (Einwilligung, Vertrag), Dokumentationspflichten und Betroffenenrechte müssen eingehalten werden."
                 },
                 {
-                  type: "license_comparison",
-                  {
                   type: "svg_diagram",
                   title: "Schaubild: Datenflüsse im Vergleich (Free vs. Enterprise Lizenzen)",
                   caption: "Gegenüberstellung: Datenabfluss ins globale Modelltraining vs. vertraglich garantierter Datenschutz.",
@@ -992,7 +983,7 @@ const COURSE_DATA = {
                     <rect x="200" y="60" width="120" height="40" rx="6" fill="#4c0519" stroke="#f43f5e"/>
                     <text x="260" y="80" fill="#fecdd3" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Modell-Training</text>
                     <text x="260" y="93" fill="#fda4af" font-family="sans-serif" font-size="8.5" text-anchor="middle">(Daten fließen ein!)</text>
-                    <text x="180" y="140" fill="#cbd5e1" font-family="sans-serif" font-size="10.5" text-anchor="middle">Verlust von Geheimhaltung & DSGVO-Kontrolle</text>
+                    <text x="180" y="140" fill="#cbd5e1" font-family="sans-serif" font-size="10.5" text-anchor="middle">Verlust von Geheimhaltung &amp; DSGVO-Kontrolle</text>
                     <text x="180" y="160" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Nicht für sensible Firmendaten zulässig</text>
                     
                     <!-- Enterprise Side -->
@@ -1008,7 +999,9 @@ const COURSE_DATA = {
                     <text x="540" y="160" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Sicher für berufliche Unternehmensnutzung</text>
                   </svg>`
                 },
-                title: "Kostenlose / Private Lizenzen vs. Enterprise-Lizenzen",
+                {
+                  type: "license_comparison",
+                  title: "Kostenlose / Private Lizenzen vs. Enterprise-Lizenzen",
                   cards: [
                     {
                       plan: "Private / Kostenlose Tarife (z. B. ChatGPT Free)",
@@ -1043,8 +1036,7 @@ const COURSE_DATA = {
                     "3. Nur offiziell von der Organisation freigegebene KI-Tools und Business-Accounts nutzen.",
                     "4. Sensible Datenkategorien (Gesundheit, Religion, Minderjährige) sind absolut tabu!"
                   ]
-                }
-              ,
+                },
                 {
                   type: "lesson_quiz",
                   id: "quiz-les-5-3",
