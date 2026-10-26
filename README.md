@@ -1,6 +1,6 @@
-# ⚡ KI-Führerschein Campus – Interaktive Lernplattform
+# ⚡ KI-Kompetenz Campus – Interaktive Lernplattform
 
-Eine moderne, didaktisch aufbereitete E-Learning-Webanwendung zur Vermittlung fundierter Kompetenzen im Bereich Künstliche Intelligenz. Entwickelt auf Basis des praxisorientierten Curriculums des **KI-Führerscheins** (Stufe Fortgeschritten).
+Eine moderne, didaktisch aufbereitete E-Learning-Webanwendung zur Vermittlung fundierter Kompetenzen im Bereich Künstliche Intelligenz. Entwickelt auf Basis des praxisorientierten Curriculums des **KI-Kompetenz-Lehrgangs** (Stufe Fortgeschritten).
 
 ---
 
@@ -8,7 +8,7 @@ Eine moderne, didaktisch aufbereitete E-Learning-Webanwendung zur Vermittlung fu
 
 ### 1. Rechtssicherheit & Eigenständiges Design
 - **Urheberrechtskonform & Eigenständig**: Komplett individuelles High-Tech UI/UX-Design (Dark- und Light-Mode) – keine Markenrechts- oder Urheberrechtsverletzungen.
-- **Neutrale Bildungsmarke**: Neutrale Bezeichnung (*KI-Führerschein Campus / AI Driver's License Academy*).
+- **Neutrale Bildungsmarke**: Neutrale Bezeichnung (*KI-Kompetenz Campus / AI Competence Academy*).
 
 ### 2. Vollständiges Curriculum (Modul 1 + Modul 2 & 3 Roadmap)
 - **1. Licht & Schatten der KI**: Ambivalenz, Produktivität vs. Verlust kognitiver Eigenständigkeit, MIT-Studie (*Your Brain on ChatGPT*, Kosmyna et al. 2025 mit EEG-Ergebnissen).

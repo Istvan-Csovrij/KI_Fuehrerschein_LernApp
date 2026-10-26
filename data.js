@@ -1,11 +1,11 @@
 /**
- * KI-Führerschein Campus - Vollständige Wissensbasis und Kursdaten
+ * KI-Kompetenz Campus - Vollständige Wissensbasis und Kursdaten
  * Enthält alle Module, Kapitel, Lektionen, Interaktionselemente und Prüfungsfragen.
  */
 
 const COURSE_DATA = {
   meta: {
-    title: "KI-Führerschein – Zertifizierter Praxislehrgang",
+    title: "KI-Kompetenz – Zertifizierter Praxislehrgang",
     subtitle: "Vom Einsteiger zum kompetenten KI-Anwender",
     version: "2.1",
     totalModules: 3,
@@ -1066,7 +1066,7 @@ const COURSE_DATA = {
               title: "Abschlussprüfung (15 Prüfungsfragen)",
               readTime: "20 Min.",
               type: "exam",
-              summary: "Das offizielle Abschlussquiz zum KI-Führerschein: 15 anspruchsvolle Fragen, 70% Bestehensgrenze, Donut-Score-Auswertung und digitales Zertifikat.",
+              summary: "Das offizielle Abschlussquiz zum KI-Kompetenznachweis: 15 anspruchsvolle Fragen, 70% Bestehensgrenze, Donut-Score-Auswertung und digitales Zertifikat.",
               isExam: true
             },
             {
@@ -1075,7 +1075,7 @@ const COURSE_DATA = {
               title: "Kursabschluss & Zertifikats-Verleihung",
               readTime: "3 Min.",
               type: "certificate-view",
-              summary: "Herzlichen Glückwunsch! Generiere dein persönliches, verifiziertes Zertifikat für den KI-Führerschein.",
+              summary: "Herzlichen Glückwunsch! Generiere dein persönliches, verifiziertes Zertifikat für deinen erfolgreichen KI-Kompetenznachweis.",
               isCertificate: true
             }
           ]

@@ -1,5 +1,5 @@
 /**
- * KI-Führerschein Campus - Application Engine
+ * KI-Kompetenz Campus - Application Engine
  * Vollständige Interaktivität, Navigation, Kapitel-Hubs, Simulationen, Quiz-Engine und Zertifikate.
  */
 
@@ -1320,17 +1320,17 @@ class KICampusApp {
 
       <div class="certificate-preview-box" id="certBox">
         <div class="cert-header">
-          <div class="cert-logo-title">AI DRIVER'S LICENSE ACADEMY</div>
+          <div class="cert-logo-title">AI COMPETENCE ACADEMY</div>
           <div style="font-size: 0.9rem; color: #64748b; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px;">Akademie für Angewandte Künstliche Intelligenz</div>
         </div>
 
         <div style="text-align: center;">
           <p style="font-size: 1.15rem; color: #475569;">Hiermit wird bescheinigt, dass</p>
           <div class="cert-recipient-name" id="certDisplayName">${this.userName}</div>
-          <p style="font-size: 1.15rem; color: #475569;">den offiziellen Lehrgang erfolgreich abgeschlossen und den</p>
+          <p style="font-size: 1.15rem; color: #475569;">den offiziellen Lehrgang erfolgreich abgeschlossen und das Zertifikat</p>
           
-          <div class="cert-title-big">KI-FÜHRERSCHEIN</div>
-          <p style="font-size: 1rem; font-weight: 600; color: #0284c7; letter-spacing: 0.05em; text-transform: uppercase;">Zertifizierter Kompetenznachweis (Stufe Fortgeschritten)</p>
+          <div class="cert-title-big">KI-KOMPETENZ</div>
+          <p style="font-size: 1rem; font-weight: 600; color: #0284c7; letter-spacing: 0.05em; text-transform: uppercase;">Zertifizierter Kompetenznachweis (Grundlagen &amp; Praxis)</p>
         </div>
 
         <div class="cert-modules-list">
@@ -1359,7 +1359,7 @@ class KICampusApp {
         <div class="cert-footer-row">
           <div>
             <strong>Ausgestellt am:</strong> ${today}<br>
-            <strong>Zertifikats-ID:</strong> AI-LIC-2026-${Math.floor(100000 + Math.random() * 900000)}<br>
+            <strong>Zertifikats-ID:</strong> AI-COMP-2026-${Math.floor(100000 + Math.random() * 900000)}<br>
             <strong>Prüfungsnote:</strong> ${this.examScore || 93}% (Erfolgreich bestanden)
           </div>
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-KI-Führerschein Campus - Lokaler Webserver
+KI-Kompetenz Campus - Lokaler Webserver
 Startet einen HTTP-Server mit Unterstützung für Video-Streaming (Range-Requests) und öffnet die App im Standard-Browser.
 """
 
@@ -28,7 +28,7 @@ def main():
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         url = f"http://localhost:{PORT}/index.html"
         print(f"==================================================")
-        print(f"  KI-FUEHRERSCHEIN CAMPUS - WEB APPLICATION")
+        print(f"  KI-KOMPETENZ CAMPUS - WEB APPLICATION")
         print(f"==================================================")
         print(f"  Server laeuft unter: {url}")
         print(f"  Druecke Strg + C zum Beenden des Servers.")

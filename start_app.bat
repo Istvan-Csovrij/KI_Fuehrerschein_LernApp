@@ -1,6 +1,6 @@
 @echo off
-title KI-Fuehrerschein Campus
-echo Starte KI-Fuehrerschein Campus Web App...
+title KI-Kompetenz Campus
+echo Starte KI-Kompetenz Campus Web App...
 cd /d "%~dp0"
 python server.py
 pause
