@@ -851,7 +851,91 @@ class KICampusApp {
       `;
     }
 
+    if (sec.type === "svg_diagram") {
+      return `
+        <div class="content-block">
+          <h3 class="block-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            ${sec.title}
+          </h3>
+          <div class="diagram-container">
+            <div class="diagram-svg-wrap">
+              ${sec.svg}
+            </div>
+            <p class="diagram-caption">📊 ${sec.caption}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    if (sec.type === "lesson_quiz") {
+      let optHtml = sec.options.map((opt, i) => `
+        <div class="mini-quiz-opt" id="mini-opt-${sec.id}-${i}" onclick="app.selectMiniQuizOption('${sec.id}', ${i})">
+          <div class="mini-quiz-radio"></div>
+          <span>${opt}</span>
+        </div>
+      `).join('');
+
+      return `
+        <div class="lesson-quiz-box" id="mini-quiz-box-${sec.id}">
+          <h4 class="mini-quiz-question">${sec.question}</h4>
+          <div class="mini-quiz-options">${optHtml}</div>
+          <button class="btn btn-primary" id="btn-check-${sec.id}" onclick="app.checkMiniQuizAnswer('${sec.id}', ${sec.correctIndex})">
+            Antwort überprüfen
+          </button>
+          <div class="mini-quiz-feedback" id="mini-feedback-${sec.id}" data-explanation="${sec.explanation.replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+      `;
+    }
+
     return '';
+  }
+
+  // Interactive Mini-Quiz Handler
+  selectMiniQuizOption(quizId, index) {
+    if (this.miniQuizEvaluated && this.miniQuizEvaluated[quizId]) return;
+    this.playSound("click");
+    if (!this.miniQuizSelected) this.miniQuizSelected = {};
+    this.miniQuizSelected[quizId] = index;
+    const box = document.getElementById(`mini-quiz-box-${quizId}`);
+    if (box) {
+      box.querySelectorAll(".mini-quiz-opt").forEach((el, i) => {
+        el.classList.toggle("selected", i === index);
+      });
+    }
+  }
+
+  checkMiniQuizAnswer(quizId, correctIndex) {
+    if (!this.miniQuizSelected || this.miniQuizSelected[quizId] === undefined) {
+      alert("Bitte wählen Sie zuerst eine Antwort aus!");
+      return;
+    }
+    if (!this.miniQuizEvaluated) this.miniQuizEvaluated = {};
+    this.miniQuizEvaluated[quizId] = true;
+
+    const chosen = this.miniQuizSelected[quizId];
+    const isCorrect = chosen === correctIndex;
+
+    if (isCorrect) this.playSound("success");
+    else this.playSound("error");
+
+    const box = document.getElementById(`mini-quiz-box-${quizId}`);
+    if (box) {
+      const chosenEl = document.getElementById(`mini-opt-${quizId}-${chosen}`);
+      const correctEl = document.getElementById(`mini-opt-${quizId}-${correctIndex}`);
+
+      if (chosenEl) chosenEl.classList.add(isCorrect ? 'correct' : 'incorrect');
+      if (!isCorrect && correctEl) correctEl.classList.add('correct');
+
+      const feedback = document.getElementById(`mini-feedback-${quizId}`);
+      if (feedback) {
+        feedback.className = `mini-quiz-feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+        feedback.innerHTML = `<strong>${isCorrect ? '✓ Richtig!' : '✗ Nicht ganz richtig:'}</strong> ${feedback.getAttribute('data-explanation') || ''}`;
+      }
+      const btn = document.getElementById(`btn-check-${quizId}`);
+      if (btn) btn.style.display = 'none';
+    }
   }
 
   // Interactive Helpers

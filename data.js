@@ -89,6 +89,20 @@ const COURSE_DATA = {
                   ],
                   takeaway: "Fazit der Studie: KI ist ein unersetzlicher Beschleuniger, darf aber nicht das eigene kritische Denken ersetzen. Wer das Steuer komplett an die KI übergibt, verlernt das Fahren!"
                 }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-1-1",
+                  question: "Welche zentrale Beobachtung machte die MIT-Studie (Kosmyna et al. 2025) bei Aufgaben, die Probanden vollständig an ChatGPT delegierten?",
+                  options: [
+                    "Die Gehirnaktivität im Frontallappen erreichte historische Höchstwerte an neuronaler Vernetzung.",
+                    "Es zeigte sich die schwächste neuronale Konnektivität im EEG, da wesentliche kognitive Syntheseprozesse passiv ausgelagert wurden.",
+                    "Die Probanden konnten die generierten Inhalte später signifikant besser und detailreicher wiedergeben.",
+                    "Die Nutzung von ChatGPT stimulierte vor allem die mathematischen Gehirnareale überdurchschnittlich stark."
+                  ],
+                  correctIndex: 1,
+                  explanation: "Richtig! Die EEG-Messungen wiesen die schwächste neuronale Aktivität bei den ChatGPT-Nutzern nach. Das Gehirn schaltete in einen passiven Konsummodus."
+                }
               ]
             }
           ]
@@ -114,7 +128,39 @@ const COURSE_DATA = {
                 },
                 {
                   type: "accordion_group",
-                  title: "Die 9 Kernbegriffe der modernen KI (Interaktiv erkunden)",
+                  {
+                  type: "svg_diagram",
+                  title: "Schaubild: Das Schichtenmodell der Künstlichen Intelligenz",
+                  caption: "Von der Informatik über Machine Learning und Deep Learning bis hin zur modernen generativen KI.",
+                  svg: `<svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+                    <defs>
+                      <linearGradient id="sg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient>
+                      <linearGradient id="sg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0284c7" stop-opacity="0.35"/><stop offset="100%" stop-color="#0369a1" stop-opacity="0.45"/></linearGradient>
+                      <linearGradient id="sg3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.35"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.45"/></linearGradient>
+                      <linearGradient id="sg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/><stop offset="100%" stop-color="#6d28d9" stop-opacity="0.5"/></linearGradient>
+                      <linearGradient id="sg5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+                    </defs>
+                    <rect x="20" y="15" width="660" height="310" rx="16" fill="url(#sg1)" stroke="#38bdf8" stroke-width="2"/>
+                    <text x="40" y="48" fill="#38bdf8" font-family="sans-serif" font-size="15" font-weight="bold">1. KÜNSTLICHE INTELLIGENZ (KI)</text>
+                    <text x="40" y="68" fill="#94a3b8" font-family="sans-serif" font-size="11.5">Oberbegriff für Systeme, die menschliche Problemlösungskompetenz & Wahrnehmung nachbilden</text>
+                    
+                    <rect x="50" y="80" width="600" height="230" rx="14" fill="url(#sg2)" stroke="#0ea5e9" stroke-width="1.5"/>
+                    <text x="70" y="110" fill="#38bdf8" font-family="sans-serif" font-size="14.5" font-weight="bold">2. MACHINE LEARNING (ML)</text>
+                    <text x="70" y="128" fill="#cbd5e1" font-family="sans-serif" font-size="11">Lernen statistischer Regeln & Muster direkt aus Datenbeispielen statt starrer Programmierung</text>
+                    
+                    <rect x="80" y="140" width="540" height="155" rx="12" fill="url(#sg3)" stroke="#60a5fa" stroke-width="1.5"/>
+                    <text x="100" y="165" fill="#93c5fd" font-family="sans-serif" font-size="14" font-weight="bold">3. KÜNSTLICHE NEURONALE NETZE (KNN)</text>
+                    <text x="100" y="182" fill="#cbd5e1" font-family="sans-serif" font-size="11">Biologisch inspirierte Schichten aus gewichteten Rechenknoten (Neuronen)</text>
+                    
+                    <rect x="110" y="195" width="480" height="88" rx="10" fill="url(#sg4)" stroke="#a78bfa" stroke-width="1.5"/>
+                    <text x="130" y="218" fill="#c4b5fd" font-family="sans-serif" font-size="13" font-weight="bold">4. DEEP LEARNING (DL)</text>
+                    <text x="130" y="233" fill="#e2e8f0" font-family="sans-serif" font-size="10.5">Tiefe Netze mit vielen verborgenen Schichten zur automatischen Abstraktion von Merkmalen</text>
+                    
+                    <rect x="140" y="242" width="420" height="32" rx="8" fill="url(#sg5)"/>
+                    <text x="350" y="263" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">⚡ 5. GENERATIVE KI (ChatGPT, Gemini, Claude, Midjourney, Veo)</text>
+                  </svg>`
+                },
+                title: "Die 9 Kernbegriffe der modernen KI (Interaktiv erkunden)",
                   items: [
                     {
                       id: "acc-1",
@@ -171,6 +217,20 @@ const COURSE_DATA = {
                       details: "KI-Systeme, die auf Basis von Prompts eigenständig neue, originär erscheinende Inhalte erzeugen – Texte, Bilder, Audio, Videos oder Computercode (Beispiele: GPT-4, Gemini, Claude, Midjourney, Stable Diffusion)."
                     }
                   ]
+                }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-2-1",
+                  question: "Was unterscheidet ein trainiertes 'KI-Modell' fundamental von einem klassischen Computerprogramm?",
+                  options: [
+                    "Ein Modell besteht aus handgeschriebenen Wenn-Dann-Bedingungen, die ein Entwickler manuell codiert hat.",
+                    "Ein Modell ist eine mathematische Repräsentation, deren Milliarden Parameter in einer Trainingsphase aus Daten optimiert wurden.",
+                    "Ein Modell benötigt im laufenden Betrieb keinerlei mathematische Berechnungen.",
+                    "Ein Modell führt immer zu exakt identischen Antworten, unabhängig von Wahrscheinlichkeiten."
+                  ],
+                  correctIndex: 1,
+                  explanation: "Exakt! Im Gegensatz zu starr programmierten Regeln optimiert ein KI-Modell während des Trainings seine Formel-Gewichte anhand von Datenbeispielen."
                 }
               ]
             },
@@ -357,7 +417,58 @@ const COURSE_DATA = {
                 },
                 {
                   type: "stepper",
-                  title: "Die 4 Phasen der Sprachverarbeitung (Schritt für Schritt)",
+                  {
+                  type: "svg_diagram",
+                  title: "Schaubild: Die Inferenz-Pipeline von Sprachmodellen (LLMs)",
+                  caption: "Vom Text-Prompt über Tokenisierung und semantischen Vektorraum zur probabilistischen Wort-Vorhersage.",
+                  svg: `<svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+                    <defs>
+                      <linearGradient id="plgrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+                    </defs>
+                    <!-- Step 1 -->
+                    <rect x="10" y="20" width="135" height="145" rx="10" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
+                    <circle cx="77" cy="52" r="16" fill="rgba(14, 165, 233, 0.2)"/>
+                    <text x="77" y="57" fill="#38bdf8" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">1</text>
+                    <text x="77" y="90" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Roher Prompt</text>
+                    <text x="77" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Benutzereingabe</text>
+                    <text x="77" y="132" fill="#38bdf8" font-family="monospace" font-size="10" text-anchor="middle">"Paris ist..."</text>
+                    
+                    <path d="M150 92 L170 92" stroke="#38bdf8" stroke-width="2"/>
+                    <!-- Step 2 -->
+                    <rect x="175" y="20" width="135" height="145" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="242" cy="52" r="16" fill="rgba(59, 130, 246, 0.2)"/>
+                    <text x="242" y="57" fill="#60a5fa" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">2</text>
+                    <text x="242" y="90" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Tokenisierung</text>
+                    <text x="242" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Zerlegung & IDs</text>
+                    <text x="242" y="132" fill="#60a5fa" font-family="monospace" font-size="10" text-anchor="middle">[4821, 312, 14]</text>
+                    
+                    <path d="M315 92 L335 92" stroke="#38bdf8" stroke-width="2"/>
+                    <!-- Step 3 -->
+                    <rect x="340" y="20" width="135" height="145" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <circle cx="407" cy="52" r="16" fill="rgba(139, 92, 246, 0.2)"/>
+                    <text x="407" y="57" fill="#a78bfa" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">3</text>
+                    <text x="407" y="90" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Latenter Raum</text>
+                    <text x="407" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Vektordistanzen</text>
+                    <text x="407" y="132" fill="#a78bfa" font-family="monospace" font-size="9.5" text-anchor="middle">[0.42, -0.89, ...]</text>
+                    
+                    <path d="M480 92 L500 92" stroke="#38bdf8" stroke-width="2"/>
+                    <!-- Step 4 -->
+                    <rect x="505" y="20" width="135" height="145" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+                    <circle cx="572" cy="52" r="16" fill="rgba(236, 72, 153, 0.2)"/>
+                    <text x="572" y="57" fill="#f472b6" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">4</text>
+                    <text x="572" y="90" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Attention-Matrix</text>
+                    <text x="572" y="110" fill="#94a3b8" font-family="sans-serif" font-size="10" text-anchor="middle">Kontextbezüge</text>
+                    <text x="572" y="132" fill="#f472b6" font-family="sans-serif" font-size="9.5" text-anchor="middle">Wort-Gewichtung</text>
+                    
+                    <path d="M645 92 L665 92" stroke="#38bdf8" stroke-width="2"/>
+                    <!-- Output -->
+                    <rect x="670" y="30" width="80" height="125" rx="10" fill="url(#plgrad)"/>
+                    <text x="710" y="75" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Nächstes</text>
+                    <text x="710" y="93" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Token</text>
+                    <text x="710" y="118" fill="#fff" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">"die" (89%)</text>
+                  </svg>`
+                },
+                title: "Die 4 Phasen der Sprachverarbeitung (Schritt für Schritt)",
                   steps: [
                     {
                       step: 1,
@@ -386,6 +497,20 @@ const COURSE_DATA = {
                   title: "Interaktiver Token- & Wahrscheinlichkeits-Simulator",
                   promptExample: "Künstliche Intelligenz berechnet Wahrscheinlichkeiten",
                   explanation: "Teste live, wie Wörter in Tokens zerlegt werden und warum LLMs keine zuverlässigen Taschenrechner ohne Code-Interpreter sind!"
+                }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-3-2-1",
+                  question: "Warum sind große Sprachmodelle (LLMs) ohne externe Tools oder Code-Interpreter keine zuverlässigen Taschenrechner?",
+                  options: [
+                    "Sie berechnen Antworten probabilistisch als wahrscheinlichste nächste Tokenfolge statt mathematisch nach arithmetischen Rechenregeln.",
+                    "Sprachmodelle besitzen grundsätzlich keine Schnittstelle für Ziffern und Zahlen.",
+                    "Modelle runden Zwischenergebnisse stets automatisch auf ganze Hunderter ab.",
+                    "Sprachmodelle dürfen aus urheberrechtlichen Gründen keine Rechnungen durchführen."
+                  ],
+                  correctIndex: 0,
+                  explanation: "Vollkommen richtig! LLMs berechnen Wahrscheinlichkeiten (Next-Token-Prediction) auf Textmustern. Sie rechnen nicht Schritt für Schritt nach den mathematischen Gesetzen der Arithmetik."
                 }
               ]
             },
@@ -447,7 +572,48 @@ const COURSE_DATA = {
                 },
                 {
                   type: "labelled_graphic_tabs",
-                  title: "Die 4 zentralen Bildbearbeitungs-Verfahren",
+                  {
+                  type: "svg_diagram",
+                  title: "Schaubild: Die 4 Bildbearbeitungsverfahren der generativen Bild-KI",
+                  caption: "Visuelle Übersicht der Funktionsweisen von Inpainting, Outpainting, Upscaling und Rescaling.",
+                  svg: `<svg viewBox="0 0 720 215" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+                    <!-- Inpainting -->
+                    <rect x="10" y="15" width="165" height="185" rx="10" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
+                    <text x="92" y="42" fill="#38bdf8" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Inpainting</text>
+                    <rect x="35" y="60" width="115" height="80" rx="4" fill="#0f172a" stroke="#475569"/>
+                    <circle cx="92" cy="100" r="20" fill="#0284c7" stroke="#38bdf8" stroke-dasharray="3,3"/>
+                    <text x="92" y="104" fill="#fff" font-family="sans-serif" font-size="9.5" text-anchor="middle">Maskiert</text>
+                    <text x="92" y="168" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Lücke im Bild füllen / ersetzen</text>
+                    
+                    <!-- Outpainting -->
+                    <rect x="190" y="15" width="165" height="185" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="272" y="42" fill="#60a5fa" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Outpainting</text>
+                    <rect x="205" y="55" width="135" height="90" rx="4" fill="none" stroke="#60a5fa" stroke-dasharray="4,4"/>
+                    <rect x="235" y="70" width="75" height="60" rx="4" fill="#1e3a8a" stroke="#93c5fd"/>
+                    <text x="272" y="104" fill="#fff" font-family="sans-serif" font-size="9.5" text-anchor="middle">Original</text>
+                    <text x="272" y="168" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Leinwand nach außen erweitern</text>
+                    
+                    <!-- Upscaling -->
+                    <rect x="370" y="15" width="165" height="185" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="452" y="42" fill="#34d399" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Upscaling</text>
+                    <rect x="395" y="65" width="45" height="45" rx="2" fill="#064e3b" stroke="#10b981"/>
+                    <text x="417" y="92" fill="#a7f3d0" font-family="sans-serif" font-size="9" text-anchor="middle">SD</text>
+                    <path d="M448 87 L468 87" stroke="#34d399" stroke-width="2"/>
+                    <rect x="475" y="55" width="50" height="65" rx="3" fill="#047857" stroke="#34d399"/>
+                    <text x="500" y="92" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">4K / 8K</text>
+                    <text x="452" y="168" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Auflösung & Details erhöhen</text>
+                    
+                    <!-- Rescaling -->
+                    <rect x="550" y="15" width="160" height="185" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                    <text x="630" y="42" fill="#fbbf24" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Rescaling</text>
+                    <rect x="575" y="62" width="110" height="40" rx="3" fill="#78350f" stroke="#f59e0b"/>
+                    <text x="630" y="87" fill="#fde68a" font-family="sans-serif" font-size="9" text-anchor="middle">16:9 Breitbild</text>
+                    <rect x="605" y="112" width="50" height="40" rx="3" fill="#b45309" stroke="#fbbf24"/>
+                    <text x="630" y="136" fill="#fff" font-family="sans-serif" font-size="9" text-anchor="middle">1:1 Quadrat</text>
+                    <text x="630" y="172" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Seitenverhältnis anpassen</text>
+                  </svg>`
+                },
+                title: "Die 4 zentralen Bildbearbeitungs-Verfahren",
                   tabs: [
                     {
                       name: "Inpainting",
@@ -481,6 +647,20 @@ const COURSE_DATA = {
                     dialogSupport: "Neu: Moderne Videomodelle können nun lippensynchrone Dialoge, Charaktere und atmosphärische Umgebungsgeräusche direkt aus dem Textprompt erschaffen."
                   }
                 }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-3-3",
+                  question: "Welches Verfahren beschreibt das gezielte Ersetzen oder Füllen eines maskierten Bereichs innerhalb eines bestehenden Bildes?",
+                  options: [
+                    "Outpainting (Erweiterung der Leinwand nach außen)",
+                    "Upscaling (Künstliche Erhöhung der Auflösung)",
+                    "Inpainting (Lücken/Flecken innerhalb eines Bildes gezielt durch Prompt neu generieren)",
+                    "Rescaling (Zuschneiden des Seitenverhältnisses)"
+                  ],
+                  correctIndex: 2,
+                  explanation: "Korrekt! Inpainting maskiert ein Areal innerhalb des Bildes (z. B. ein störendes Objekt) und ersetzt es passend zum restlichen Kontext."
+                }
               ]
             }
           ]
@@ -510,6 +690,20 @@ const COURSE_DATA = {
                   badge: "Berufs-Phänomen",
                   title: "Das Phänomen 'Workslop'",
                   text: "Als 'Workslop' bezeichnet man minderwertige, unvollständige oder fehlerhafte KI-Texte, die ungeprüft in Umlauf gebracht werden. Statt Zeit zu sparen, wälzt der Ersteller die Arbeit auf Kollegen oder Kunden ab, die den Text mühsam korrigieren müssen."
+                }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-4-1-1",
+                  question: "Was bezeichnet der in der Praxis gefürchtete Begriff 'Workslop'?",
+                  options: [
+                    "Einen Ausfall von Rechenzentren durch zu hohe GPU-Temperaturen.",
+                    "Minderwertige, ungeprüfte KI-Ergebnisse, die Kollegen aufgebürdet werden und zeitraubende Korrekturen verursachen.",
+                    "Ein spezielles Dateiformat für Vektor-Embeddings im latenten Raum.",
+                    "Ein Schutzverfahren gegen Cyberangriffe bei Cloud-LLMs."
+                  ],
+                  correctIndex: 1,
+                  explanation: "Richtig! Als Workslop bezeichnet man das ungeprüfte Weiterleiten fehlerhafter KI-Texte, was für Kollegen oder Kunden mehr Mehrarbeit statt Entlastung bedeutet."
                 }
               ]
             },
@@ -615,7 +809,36 @@ const COURSE_DATA = {
                 },
                 {
                   type: "risk_pyramid",
-                  title: "Die Risikopyramide des EU AI Act (Interaktiv)",
+                  {
+                  type: "svg_diagram",
+                  title: "Schaubild: Die offizielle Risikopyramide des EU AI Act",
+                  caption: "Von der Europäischen Union definierte 4 Risikostufen mit Beispielen und Rechtsgrundlagen.",
+                  svg: `<svg viewBox="0 0 700 270" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+                    <!-- Tier 1: Verboten -->
+                    <polygon points="350,15 450,75 250,75" fill="#f43f5e" stroke="#fda4af" stroke-width="1.5"/>
+                    <text x="350" y="55" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">1. UNANNEHMBAR (VERBOTEN · Art. 5)</text>
+                    <text x="560" y="55" fill="#f43f5e" font-family="sans-serif" font-size="11" font-weight="600">Social Scoring, Manipulation</text>
+                    <line x1="455" y1="52" x2="550" y2="52" stroke="#f43f5e" stroke-dasharray="2,2"/>
+                    
+                    <!-- Tier 2: Hochrisiko -->
+                    <polygon points="245,82 455,82 515,138 185,138" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                    <text x="350" y="115" fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">2. HOCHRISIKO (STRENG REGULIERT)</text>
+                    <text x="580" y="115" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="600">HR, Justiz, Kreditprüfung, Netze</text>
+                    <line x1="520" y1="112" x2="570" y2="112" stroke="#f59e0b" stroke-dasharray="2,2"/>
+                    
+                    <!-- Tier 3: Begrenztes Risiko -->
+                    <polygon points="180,145 520,145 575,200 125,200" fill="#3b82f6" stroke="#93c5fd" stroke-width="1.5"/>
+                    <text x="350" y="177" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">3. BEGRENZTES RISIKO (TRANSPARENZPFLICHT · Art. 50)</text>
+                    <text x="25" y="177" fill="#60a5fa" font-family="sans-serif" font-size="11" font-weight="600">Chatbots, Deepfakes</text>
+                    <line x1="120" y1="174" x2="160" y2="174" stroke="#60a5fa" stroke-dasharray="2,2"/>
+                    
+                    <!-- Tier 4: Minimales Risiko -->
+                    <polygon points="120,207 580,207 635,262 65,262" fill="#10b981" stroke="#a7f3d0" stroke-width="1.5"/>
+                    <text x="350" y="240" fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">4. MINIMALES / KEIN RISIKO (FREI NUTZBAR)</text>
+                    <text x="25" y="240" fill="#34d399" font-family="sans-serif" font-size="11" font-weight="600">Spamfilter, Videospiele, Übersetzer</text>
+                  </svg>`
+                },
+                title: "Die Risikopyramide des EU AI Act (Interaktiv)",
                   levels: [
                     {
                       level: "1. Unannehmbares Risiko (Art. 5)",
@@ -668,6 +891,20 @@ const COURSE_DATA = {
                     }
                   ]
                 }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-5-1",
+                  question: "Welche der folgenden KI-Anwendungen fällt unter die Stufe 'Unannehmbares Risiko' (VERBOTEN nach Art. 5 EU AI Act)?",
+                  options: [
+                    "Ein E-Mail-Spamfilter im Büroalltag.",
+                    "Staatliches oder privates Social Scoring (soziale Bewertung und Sanktionierung von Bürgern).",
+                    "Ein interaktiver Kundenservice-Chatbot auf einer Firmenwebsite.",
+                    "Eine Software zur KI-gestützten Rechtschreibkorrektur."
+                  ],
+                  correctIndex: 1,
+                  explanation: "Genau! Social Scoring, manipulative Verhaltensbeeinflussung und kognitive Ausbeutung von Schutzbedürftigen sind nach Art. 5 des EU AI Act ausnahmslos verboten."
+                }
               ]
             },
             {
@@ -710,6 +947,20 @@ const COURSE_DATA = {
                   title: "Kommerzielle Nutzung & Plattform-AGB",
                   content: "Achtung: Ob Sie KI-Inhalte gewerblich (kommerziell) nutzen dürfen, richtet sich nicht primär nach dem Urheberrecht, sondern nach den Allgemeinen Geschäftsbedingungen (AGB/ToS) der jeweiligen Plattform! Bei Diensten wie Midjourney oder OpenAI ist die kommerzielle Nutzung oft zahlenden Abonnenten vorbehalten."
                 }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-5-2",
+                  question: "Wer kann nach dem deutschen Urheberrecht (§ 2 Abs. 2 UrhG) rechtlich Urheber eines Werkes sein?",
+                  options: [
+                    "Ausschließlich ein lebender Mensch (Schöpferprinzip) – eine KI kann niemals Urheber sein.",
+                    "Das KI-Modell selbst, sofern es ausreichend viele Parameter besitzt.",
+                    "Der Betreiber des Rechenzentrums, in dem die KI gerechnet hat.",
+                    "Automatisch jeder, der auf 'Generieren' klickt, unabhängig vom eigenen Aufwand."
+                  ],
+                  correctIndex: 0,
+                  explanation: "Absolut richtig! Urheberrechtlich geschützt sind nur persönliche geistige Schöpfungen von Menschen. Reine KI-Generierungen sind daher gemeinfrei!"
+                }
               ]
             },
             {
@@ -727,7 +978,37 @@ const COURSE_DATA = {
                 },
                 {
                   type: "license_comparison",
-                  title: "Kostenlose / Private Lizenzen vs. Enterprise-Lizenzen",
+                  {
+                  type: "svg_diagram",
+                  title: "Schaubild: Datenflüsse im Vergleich (Free vs. Enterprise Lizenzen)",
+                  caption: "Gegenüberstellung: Datenabfluss ins globale Modelltraining vs. vertraglich garantierter Datenschutz.",
+                  svg: `<svg viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+                    <!-- Free Side -->
+                    <rect x="20" y="15" width="320" height="180" rx="12" fill="#1e293b" stroke="#f43f5e" stroke-width="1.5"/>
+                    <text x="180" y="44" fill="#f43f5e" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">⚠️ Private / Free Lizenzen</text>
+                    <rect x="40" y="60" width="110" height="40" rx="6" fill="#334155"/>
+                    <text x="95" y="85" fill="#f8fafc" font-family="sans-serif" font-size="11" text-anchor="middle">Nutzer-Prompt</text>
+                    <path d="M155 80 L195 80" stroke="#f43f5e" stroke-width="2"/>
+                    <rect x="200" y="60" width="120" height="40" rx="6" fill="#4c0519" stroke="#f43f5e"/>
+                    <text x="260" y="80" fill="#fecdd3" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Modell-Training</text>
+                    <text x="260" y="93" fill="#fda4af" font-family="sans-serif" font-size="8.5" text-anchor="middle">(Daten fließen ein!)</text>
+                    <text x="180" y="140" fill="#cbd5e1" font-family="sans-serif" font-size="10.5" text-anchor="middle">Verlust von Geheimhaltung & DSGVO-Kontrolle</text>
+                    <text x="180" y="160" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Nicht für sensible Firmendaten zulässig</text>
+                    
+                    <!-- Enterprise Side -->
+                    <rect x="380" y="15" width="320" height="180" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="540" y="44" fill="#34d399" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">🛡️ Enterprise / Business Lizenzen</text>
+                    <rect x="400" y="60" width="110" height="40" rx="6" fill="#334155"/>
+                    <text x="455" y="85" fill="#f8fafc" font-family="sans-serif" font-size="11" text-anchor="middle">Nutzer-Prompt</text>
+                    <path d="M515 80 L555 80" stroke="#10b981" stroke-width="2"/>
+                    <rect x="560" y="60" width="120" height="40" rx="6" fill="#064e3b" stroke="#10b981"/>
+                    <text x="620" y="80" fill="#a7f3d0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Verarbeitung</text>
+                    <text x="620" y="93" fill="#6ee7b7" font-family="sans-serif" font-size="8.5" text-anchor="middle">(KEIN Training!)</text>
+                    <text x="540" y="140" fill="#cbd5e1" font-family="sans-serif" font-size="10.5" text-anchor="middle">Vollständige AVV-Garantie gemäß DSGVO</text>
+                    <text x="540" y="160" fill="#94a3b8" font-family="sans-serif" font-size="9.5" text-anchor="middle">Sicher für berufliche Unternehmensnutzung</text>
+                  </svg>`
+                },
+                title: "Kostenlose / Private Lizenzen vs. Enterprise-Lizenzen",
                   cards: [
                     {
                       plan: "Private / Kostenlose Tarife (z. B. ChatGPT Free)",
@@ -762,6 +1043,20 @@ const COURSE_DATA = {
                     "3. Nur offiziell von der Organisation freigegebene KI-Tools und Business-Accounts nutzen.",
                     "4. Sensible Datenkategorien (Gesundheit, Religion, Minderjährige) sind absolut tabu!"
                   ]
+                }
+              ,
+                {
+                  type: "lesson_quiz",
+                  id: "quiz-les-5-3",
+                  question: "Was gilt bezüglich des Datenschutzes (DSGVO), wenn Mitarbeiter im Unternehmen eine KI für ihre Aufgaben einsetzen?",
+                  options: [
+                    "Die DSGVO gilt für KI-Systeme generell nicht, da KI-Modelle keine realen Personen sind.",
+                    "Der Arbeitgeber ist der 'Verantwortliche' im Sinne der DSGVO; sensible Kundendaten dürfen keinesfalls in ungeschützte Tools eingegeben werden.",
+                    "Mitarbeiter haften stets persönlich mit ihrem Privatvermögen für jeden Prompt.",
+                    "In kostenlosen Tools wie ChatGPT Free sind alle Daten automatisch vor dem Modelltraining geschützt."
+                  ],
+                  correctIndex: 1,
+                  explanation: "Richtig! Der Arbeitgeber ist die datenverarbeitende Organisation und haftet für Datenschutzkonformität. Deshalb dürfen keine sensiblen Firmen- oder Kundendaten in ungeschützte KI-Dienste fließen."
                 }
               ]
             }
